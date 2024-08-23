@@ -6,6 +6,11 @@ const cron = require('node-cron');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use((req, res, next) => {
+    res.setHeader('Cache-Control', 'no-store');
+    next();
+});
+
 let cachedHighscores = [];
 let lastUpdated = new Date(0);
 
