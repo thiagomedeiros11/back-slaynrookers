@@ -61,7 +61,11 @@ async function updateHighscores() {
     lastUpdated = new Date();
 }
 
-cron.schedule('0 8,20 * * *', updateHighscores);
+cron.schedule('55 7,19 * * *', () => {
+    axios.get('https://back-slaynrookers.onrender.com/api/highscores')
+    .then(response => console.log('Warm-up request made'))
+    .catch(err => console.error('Warm-up request failed', err));
+});
 
 app.get('/api/highscores', (req, res) => {
     if (cachedHighscores.length === 0 || (new Date() - lastUpdated) > 24 * 60 * 60 * 1000) {
