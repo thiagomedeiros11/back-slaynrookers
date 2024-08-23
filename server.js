@@ -14,7 +14,7 @@ const allowedOrigin = [
 app.use(cors({
     origin: allowedOrigin,
     methods: ['GET'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control']
+    allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control', 'Pragma']
 }));
 
 app.use((req, res, next) => {
