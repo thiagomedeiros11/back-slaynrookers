@@ -7,14 +7,14 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const allowedOrigin = [
-    'https://front-slaynrookers-git-main-thiagomedeiros11s-projects.vercel.app/',
+    'https://front-slaynrookers-git-main-thiagomedeiros11s-projects.vercel.app',
     'https://front-slaynrookers.vercel.app'
 ];
 
 app.use(cors({
     origin: allowedOrigin,
     methods: ['GET'],
-    allowedHeaders: ['Content-Type']
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use((req, res, next) => {
