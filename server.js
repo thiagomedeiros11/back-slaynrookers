@@ -2,9 +2,20 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const cron = require('node-cron');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const allowedOrigin = [
+    'https://front-slaynrookers-git-main-thiagomedeiros11s-projects.vercel.app/',
+    'https://front-slaynrookers.vercel.app'
+];
+
+app.use(cors({
+    origin: allowedOrigin,
+    methods: ['GET'],
+    allowedHeaders: ['Content-Type']
+}));
 
 app.use((req, res, next) => {
     res.setHeader('Cache-Control', 'no-store');
