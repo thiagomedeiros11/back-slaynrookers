@@ -3,13 +3,15 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const cron = require('node-cron');
 const cors = require('cors');
+const dotenv = require('dotenv');
+
+const env = process.env.NODE_ENV || 'development';
+dotenv.config({ path: `.env.${env}` });
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const allowedOrigin = [
-    'https://front-slaynrookers-git-main-thiagomedeiros11s-projects.vercel.app',
-    'https://front-slaynrookers.vercel.app'
-];
+
+const allowedOrigin = process.env.ALLOWED_ORIGIN.split(',');
 
 app.use(cors({
     origin: allowedOrigin,
