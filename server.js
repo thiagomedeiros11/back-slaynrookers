@@ -79,7 +79,7 @@ async function updateHighscores() {
     lastUpdated = new Date();
 }
 
-cron.schedule('55 7,19 * * *', () => {
+cron.schedule('*/30 * * * * *', () => {
     axios.get('https://back-slaynrookers.onrender.com/api/highscores')
     .then(response => console.log('Warm-up request made'))
     .catch(err => console.error('Warm-up request failed', err));
