@@ -1,7 +1,6 @@
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
-const cron = require('node-cron');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
@@ -23,10 +22,6 @@ app.use((req, res, next) => {
     res.setHeader('Cache-Control', 'no-store');
     next();
 });
-
-let cachedHighscores = [];
-let lastUpdated = new Date(0);
-
 
 async function updateHighscores() {
     const baseUrl = "https://www.slaynville.com/?highscores/experience";
@@ -75,27 +70,17 @@ async function updateHighscores() {
         page += 1;
 
     }
-    cachedHighscores = characters;
-    lastUpdated = new Date();
+    return characters;
 }
 
-cron.schedule('*/30 * * * * *', () => {
-    axios.get('https://back-slaynrookers.onrender.com/api/highscores')
-    .then(response => console.log('Warm-up request made'))
-    .catch(err => console.error('Warm-up request failed', err));
-});
-
 app.get('/api/highscores', (req, res) => {
-    if (cachedHighscores.length === 0 || (new Date() - lastUpdated) > 24 * 60 * 60 * 1000) {
-        updateHighscores().then(() => res.json(cachedHighscores)).catch(err => {
-            console.error(err);
-            res.status(500).send('Server error');
-        });
-    } else {
-        res.json(cachedHighscores);
-    }
+    updateHighscores().then((characters) => res.json(characters)).catch(err => {
+        console.error(err);
+        res.status(500).send('Server error'); 
+    });
 });
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
+
 });
