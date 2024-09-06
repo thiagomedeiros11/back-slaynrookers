@@ -4,3 +4,5 @@ npm-debug.log
 # Env
 .env.development
 .env.production
+
+app.log

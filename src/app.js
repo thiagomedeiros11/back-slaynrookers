@@ -19,6 +19,10 @@ app.use((req, res, next) => {
 
 app.get('/api/highscores', getHighscores);
 
-app.listen(port, () => {
-    logger.info(`Server running on port ${port}`);
-});
+if (require.main === module) {
+    app.listen(port, () => {
+        logger.info(`Server running on port ${port}`);
+    });
+}
+
+module.exports = app;
