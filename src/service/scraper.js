@@ -30,7 +30,7 @@ const fetchHighscoreData = async () => {
                 const name = nameAndVocation[0]?.trim() || "";
                 const vocation = nameAndVocation[1]?.trim() || "";
                 const level = parseInt($(columns[3]).text().trim().replace(',', ''), 10);
-                const points = parseInt($(columns[4].text().trim().replace(',', ''), 10);
+                const points = parseInt($(columns[4]).text().trim().replace(',', ''), 10);
 
                     if (vocation.toLowerCase() === "none" && level >= 9) {
                         characters.push({ name, level, points });
