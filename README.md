@@ -8,8 +8,8 @@ The ranking became a community and several uses for the site were suggested.
 
 Where to play Slaynville?
 ----
-[Slaynville](slaynville.com)
-[Slaynrookers](front-slaynrookers.vercel.app)
+Play Slaynville [Slaynville](slaynville.com)  
+Acess Slaynrookers [Slaynrookers](front-slaynrookers.vercel.app)  
 
 How to run the project locally?
 ----
